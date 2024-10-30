@@ -3,47 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yakında Açılacak</title>
+    <title>Rüya Şehri ile Tatil Ülkesi Önerisi</title>
+   
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7faff;
+    overflow: hidden;
+}
 
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+.sparkling-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 1px, rgba(255,255,255,0) 1px);
+    background-size: 4px 4px;
+    animation: sparkle 10s infinite linear;
+    z-index: -1;
+    filter: blur(1px);
+}
 
-        h1 {
-            font-size: 48px;
-            color: #333;
-            margin-bottom: 20px;
-        }
+@keyframes sparkle {
+    0% { background-position: 0 0; }
+    50% { background-position: -10px -10px; }
+    100% { background-position: 0 0; }
+}
 
-        p {
-            font-size: 18px;
-            color: #666;
-        }
+.container {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2a3d66;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+#dreamCityForm {
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1e3f1;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(45deg, #89d4cf, #6eabb8);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(145, 211, 203, 0.7);
+}
+
+/* Yükleniyor animasyonu */
+.loading {
+    display: none;
+    font-size: 1.5em;
+    color: #6eabb8;
+    text-align: center;
+    margin-top: 20px;
+    animation: fadein 1s ease-in-out infinite;
+}
+
+@keyframes fadein {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Pop-up öneri stili */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    color: #2a3d66;
+    font-size: 1.2em;
+    animation: popupShow 0.3s ease-out;
+    cursor: pointer;
+}
+
+@keyframes popupShow {
+    from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
+    to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+}
+
+.popup strong {
+    color: #6eabb8;
+}
+
     </style>
 </head>
 <body>
+    <div class="sparkling-background"></div>
+
     <div class="container">
-        <h1>Yakında Açılacak</h1>
-        <p>Yeni web sitemiz üzerinde çalışıyoruz. Lütfen bizi tekrar ziyaret edin!</p>
+        <h1>Rüya Şehri ile Tatil Ülkesi Önerisi</h1>
+
+        <form id="dreamCityForm">
+            <label>Doğum Tarihi: <input type="date" id="birthDate" required></label>
+            <label>Doğum Saati: <input type="time" id="birthTime" required></label>
+            
+            <label>Rüya Şehriniz:
+                <input type="text" id="dreamCity" placeholder="Örn: Tokyo" required>
+            </label>
+            
+            <label>Tatile Gitmek İstediğiniz Ay:
+                <select id="travelMonth" required>
+                    <option value="">Ay Seçin</option>
+                    <option value="Ocak">Ocak</option>
+                    <option value="Şubat">Şubat</option>
+                    <option value="Mart">Mart</option>
+                    <option value="Nisan">Nisan</option>
+                    <option value="Mayıs">Mayıs</option>
+                    <option value="Haziran">Haziran</option>
+                    <option value="Temmuz">Temmuz</option>
+                    <option value="Ağustos">Ağustos</option>
+                    <option value="Eylül">Eylül</option>
+                    <option value="Ekim">Ekim</option>
+                    <option value="Kasım">Kasım</option>
+                    <option value="Aralık">Aralık</option>
+                </select>
+            </label>
+            
+            <button type="button" onclick="showLoadingAnimation()">Ülke Öner</button>
+        </form>
+
+        <div id="loading" class="loading">Yükleniyor...</div> <!-- Yükleniyor animasyonu -->
+        <div id="popup" class="popup"></div> <!-- Pop-up öneri sonucu -->
     </div>
+
+    <script>
+        function showLoadingAnimation() {
+            document.getElementById("loading").style.display = "block";
+            setTimeout(suggestCountry, 2000); // 2 saniye bekleme (animasyon süresi)
+        }
+
+        function suggestCountry() {
+            document.getElementById("loading").style.display = "none";
+
+            const dreamCity = document.getElementById('dreamCity').value;
+            const travelMonth = document.getElementById('travelMonth').value;
+
+            const countries = ["Fransa", "Japonya", "Brezilya", "İtalya", "Tayland", "İspanya", "Avustralya", "Kanada", "Meksika", "Hollanda", "İngiltere", "Almanya", "İsviçre", "Güney Kore", "Hindistan", "Arjantin", "Yunanistan", "Mısır", "Yeni Zelanda", "Portekiz"];
+            const suggestedCountry = countries[Math.floor(Math.random() * countries.length)];
+
+            document.getElementById("popup").innerHTML = 
+                `<p>Doğduğun tarihine bakarak ${dreamCity} hayali ve ${travelMonth} ayında tatil arzusu ile sana önerilen ülke: <strong>${suggestedCountry}</strong></p>`;
+            document.getElementById("popup").style.display = "block";
+        }
+
+        document.getElementById("popup").addEventListener("click", function() {
+            this.style.display = "none";
+        });
+    </script>
 </body>
 </html>
