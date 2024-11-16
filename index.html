@@ -3,12 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arka Plan Müziği</title>
+    <title>Romantik Web Sitesi</title>
+    <style>
+        /* Genel Gövde Stili */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Başlık Stili */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        /* Buton Stili */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-family: 'Georgia', serif;
+            background-color: #ffffff88;
+            border: none;
+            border-radius: 25px;
+            color: #ee9ca7;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Animasyon */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Kalp Animasyonu */
+        .heart {
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background-color: #ff6f61;
+            margin: auto;
+            border-radius: 50%;
+            transform: rotate(-45deg);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background-color: #ff6f61;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: rotate(-45deg) translateY(0);
+            }
+            50% {
+                transform: rotate(-45deg) translateY(-20px);
+            }
+        }
+
+        .hearts-container {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Seni Seviyorum</h1>
-    <audio id="background-music" src="sarkiniz.mp3" loop></audio>
-    <button onclick="playMusic()">Müziği Başlat</button>
+    <h1>Seni Çok Seviyorum ❤️</h1>
+    <audio id="background-music" src="Yedinci-Ev-Sarhosum.mp3" loop></audio>
+    <button onclick="playMusic()">Tıkla  🎵</button>
+
+    <!-- Kalp Animasyonları -->
+    <div class="hearts-container">
+        <div class="heart"></div>
+        <div class="heart" style="animation-delay: 1s;"></div>
+        <div class="heart" style="animation-delay: 2s;"></div>
+    </div>
 
     <script>
         function playMusic() {
